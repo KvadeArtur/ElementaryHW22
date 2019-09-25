@@ -7,8 +7,8 @@ public interface Storage {
     int removeAll();
     int removeUser(int id);
     int removeUserByName(String name);
-    void addUser(Users user);
-    void updateUser(Users user);
-    Users getUser(int id);
-    List<Users> getAllUsers();
+    void addUser(User user);
+    void updateUser(User user);
+    User getUser(int id);
+    List<User> getAllUsers();
 }

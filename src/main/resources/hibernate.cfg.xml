@@ -17,7 +17,7 @@
 
         <property name="hibernate.connection.password"> </property>
 
-        <mapping class="com.kvart.Users"/>
+        <mapping class="com.kvart.User"/>
 
     </session-factory>
 </hibernate-configuration>

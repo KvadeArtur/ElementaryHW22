@@ -20,7 +20,7 @@ public class DataStorage implements Storage {
     public int removeAll() {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            String hql = String.format("DELETE FROM %s", Users.class.getSimpleName());
+            String hql = String.format("DELETE FROM %s", User.class.getSimpleName());
             Query query = session.createQuery(hql);
             int count = query.executeUpdate();
             transaction.commit();
@@ -32,7 +32,7 @@ public class DataStorage implements Storage {
     public int removeUser(int id) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            String hql = String.format("DELETE FROM users WHERE id = :id ", Users.class);
+            String hql = String.format("DELETE FROM User WHERE id = :id ", User.class);
             Query query = session.createQuery(hql).setParameter("id", id);
             int count = query.executeUpdate();
             transaction.commit();
@@ -44,7 +44,7 @@ public class DataStorage implements Storage {
     public int removeUserByName(String name) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            String hql = String.format("DELETE FROM users WHERE name = :name ", Users.class);
+            String hql = String.format("DELETE FROM User WHERE name = :name ", User.class);
             Query query = session.createQuery(hql).setParameter("name", name);
             int count = query.executeUpdate();
             transaction.commit();
@@ -53,7 +53,7 @@ public class DataStorage implements Storage {
     }
 
     @Override
-    public void addUser(Users user) {
+    public void addUser(User user) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.save(user);
@@ -62,7 +62,7 @@ public class DataStorage implements Storage {
     }
 
     @Override
-    public void updateUser(Users user) {
+    public void updateUser(User user) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.update(user);
@@ -71,19 +71,19 @@ public class DataStorage implements Storage {
     }
 
     @Override
-    public Users getUser(int id) {
+    public User getUser(int id) {
         try (Session session = sessionFactory.openSession()) {
             return session
-                    .createQuery("FROM users WHERE id = :id ", Users.class)
+                    .createQuery("FROM User WHERE id = :id ", User.class)
                     .setParameter("id", id)
                     .getSingleResult();
         }
     }
 
     @Override
-    public List<Users> getAllUsers() {
+    public List<User> getAllUsers() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM users", Users.class).list();
+            return session.createQuery("FROM User", User.class).list();
         }
     }
 }
